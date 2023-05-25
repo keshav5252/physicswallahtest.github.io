@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Test - Let's find where you stand.</title>
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h5 class="text-white h5 text-center">Let's find where you stand.</h5>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+
+                <img width="40px" src="assets/logo2.png" alt="">
+                <h1 class="myText">Physics wallah</h1>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="notest" id="notest">
+            <img src="assets/nothing.png" alt="nothing here..">
+            <h2 style="font-size: 25px; opacity: 0.8;">No test found : (</h2>
+        </div>
+
+        <div class="test" id="test">
+            <h1 id="time">0:00</h1>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="result" class="quiz-body">
+                                <form name="quizForm" onSubmit="">
+                                    <fieldset class="form-group">
+                                        <h4><span id="qid">1.</span> <span id="question"></span></h4>
+                                        <img src="" id="queimg" alt="">
+                                        <div class="option-block-container" id="question-options">
+                                        </div> <!-- End of option block -->
+                                    </fieldset>
+                                    <button name="previous" id="previous" class="btn btn-success">Previous</button>
+                                    &nbsp;
+                                    <button name="next" id="next" class="btn btn-success">Next</button>
+                                </form>
+                            </div>
+    </main>
+
+    <footer>
+        <p class="myp">Maded with ❤ by keshav</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script>
+
+        var targetTime = new Date();
+        targetTime.setDate(25);
+        targetTime.setHours(15);
+
+        function showtest() {
+            var currentTime = new Date();
+            if (targetTime.getDate() == currentTime.getDate()) {
+                if (targetTime.getHours() == currentTime.getHours()) {
+                    document.getElementById('test').style.display = "block"
+                    document.getElementById('notest').style.display = "none"
+                    clearInterval(timeinterval)
+                } else {
+                    document.getElementById('notest').style.display = "block"
+                    document.getElementById("test").style.display = "none"
+                }
+            } else {
+                document.getElementById('notest').style.display = "block"
+                document.getElementById("test").style.display = "none"
+            }
+        }
+
+        var timeinterval = setInterval(showtest, 500)
+
+// ----------------------------Clock-------------------------------
+
+        var secondsRemaining;
+        var intervalHandle;
+
+
+        function tick() {
+            // grab the h1
+            var timeDisplay = document.getElementById("time");
+
+            // turn the seconds into mm:ss
+            var min = Math.floor(secondsRemaining / 60);
+            var sec = secondsRemaining - (min * 60);
+
+            //add a leading zero (as a string value) if seconds less than 10
+            if (sec < 10) {
+                sec = "0" + sec;
+            }
+
+            // concatenate with colon
+            var message = min.toString() + ":" + sec;
+
+            // now change the display
+            timeDisplay.innerHTML = message;
+
+            // stop is down to zero
+            if (secondsRemaining === 0) {
+                alert("Done!");
+                clearInterval(intervalHandle);
+            }
+
+            //subtract from seconds remaining
+            secondsRemaining--;
+
+        }
+
+        function startCountdown() {
+
+            // get countents of the "minutes" text box
+            var minutes = 60;
+
+            // how many seconds
+            secondsRemaining = minutes * 60;
+
+            //every second, call the "tick" function
+            // have to make it into a variable so that you can stop the interval later!!!
+            intervalHandle = setInterval(tick, 1000);
+
+        }
+     startCountdown();
+    </script>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
