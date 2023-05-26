@@ -64,7 +64,7 @@
                             </div>
     </main>
 
-    <footer>
+    <footer hidden>
         <p class="myp">Maded with ❤ by keshav</p>
     </footer>
 
@@ -76,13 +76,14 @@
     <script>
 
         var targetTime = new Date();
-        targetTime.setDate(25);
-        targetTime.setHours(21);
+        targetTime.setDate(26);
+        targetTime.setHours(20);
 
         function showtest() {
             var currentTime = new Date();
             if (targetTime.getDate() == currentTime.getDate()) {
-                if (targetTime.getHours() == currentTime.getHours()) {
+                if (targetTime.getHours() == currentTime.getHours() || targetTime.getHours()+1 == currentTime.getHours())
+                 {
                     document.getElementById('test').style.display = "block"
                     document.getElementById('notest').style.display = "none"
                     clearInterval(timeinterval)
@@ -148,19 +149,6 @@
 
         }
         startCountdown();
-
-        function disableTest() {
-            var currentTime = new Date();
-            if (currentTime.getHours() == targetTime.getHours() + 2) {
-                document.getElementById('test').style.display = "none"
-                document.getElementById('notest').style.display = "block"
-            } else {
-                document.getElementById('test').style.display = "block"
-                document.getElementById('notest').style.display = "none"
-            }
-        }
-
-        var testtimecount = setInterval(disableTest, 1000)
 
     </script>
 
